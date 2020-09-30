@@ -1,0 +1,22 @@
+- name: copy script to /usr/local/bin
+  copy:
+    src: ubuntu-updates-to-pushgateway.sh
+    dest: /usr/local/bin/ubuntu-updates-to-pushgateway.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: add script to cron for reboot
+  cron:
+    name: "ubuntu-updates-to-pushgateway.sh reboot"
+    special_time: reboot
+    user: root
+    job: "/usr/local/bin/ubuntu-updates-to-pushgateway.sh"
+
+- name: add script to cron for every 6 hours
+  cron:
+    name: "ubuntu-updates-to-pushgateway.sh every 6 hours"
+    minute: "14"
+    hour: "0,6,12,18"
+    user: root
+    job: "/usr/local/bin/ubuntu-updates-to-pushgateway.sh"
