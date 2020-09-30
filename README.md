@@ -5,13 +5,13 @@ Use the following Prometheus Alert code:
 
 ```yaml
 - name: Software alerts
-	rules:
-	- alert: Ubuntu security updates
-	expr: ubuntu_updates_security{job="ubuntu_updates"} > 0
-	for: 5m
-	labels:
-		severity: warning
-	annotations:
-		title: Ubuntu security updates for {{ $labels.instance }} instance
-		description: There are {{ $value }} security updates for {{ $labels.instance }} instance
+    rules:
+    - alert: Ubuntu security updates
+    expr: ubuntu_updates_security{job="ubuntu_updates"} > 0
+    for: 5m
+    labels:
+        severity: warning
+    annotations:
+        title: Ubuntu security updates for {{ $labels.instance }} instance
+        description: There are {{ $value }} security updates for {{ $labels.instance }} instance
 ```
