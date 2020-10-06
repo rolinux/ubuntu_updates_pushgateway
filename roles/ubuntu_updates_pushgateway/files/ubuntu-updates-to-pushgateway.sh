@@ -3,12 +3,14 @@
 # comment enable echo/debug
 echo() { :; }
 
-# change it to your target Pushgateway
 PUSHGATEWAY="http://nuc6:30091"
 
 INSTANCE=`uname -n`
 
 echo $INSTANCE
+
+# start with apt update -qq
+apt update -qq
 
 # parse updates total and security
 read -r TOTAL SECURITY <<< $(/usr/lib/update-notifier/apt-check 2>&1 | tr ';' ' ')
